@@ -99,18 +99,20 @@ MELODY = [
     ('C5', 0.25), ('C5', 0.25), ('C5', 0.7), ('C5', 0.25), ('C5', 0.25), ('B', 0.25), ('B', 0.25), ('B', 0.25), ('B', 0.25), ('A', 0.25), ('A', 0.25), ('G', 0.25), ('A', 0.5), ('B', 0.5),
     ('B', 0.25), ('B', 0.25), ('B', 0.5), ('B', 0.25), ('B', 0.25), ('B', 0.5), ('B', 0.25), ('D5', 0.25), ('G', 0.25), ('A', 0.25), ('B', 0.7),
     ('C5', 0.25), ('C5', 0.25), ('C5', 0.7), ('C5', 0.25), ('C5', 0.25), ('B', 0.25), ('B', 0.25), ('B', 0.25), ('D5', 0.25), ('D5', 0.25), ('C5', 0.25), ('A', 0.25), ('G', 1.0)
-    
 ]
 
+# 음 재생 함수 수정 (음과 음 사이 간격 추가)
 def play_tone(pin, frequency, duration):
     period = 1.0 / frequency
     half_period = period / 2
     end_time = time.time() + duration
     while time.time() < end_time:
-        gpio_write(pin, 1)
+        gpio_write(pin, 1)  # 부저를 켜는 부분
         time.sleep(half_period)
-        gpio_write(pin, 0)
+        gpio_write(pin, 0)  # 부저를 끄는 부분
         time.sleep(half_period)
+    # 음과 음 사이에 약간의 간격을 추가
+    time.sleep(0.01)  # 10ms의 지연시간 추가 (필요에 따라 조절)
 
 # 멜로디 재생
 def play_melody():
