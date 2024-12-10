@@ -112,7 +112,7 @@ def play_tone(pin, frequency, duration):
         gpio_write(pin, 0)  # 부저를 끄는 부분
         time.sleep(half_period)
     # 음과 음 사이에 약간의 간격을 추가
-    time.sleep(0.01)  # 10ms의 지연시간 추가 (필요에 따라 조절)
+    time.sleep(0.05)  # 10ms의 지연시간 추가 (필요에 따라 조절)
 
 # 멜로디 재생
 def play_melody():
@@ -121,7 +121,7 @@ def play_melody():
     try:
         for note, length in MELODY:
             if note in FREQUENCIES:
-                play_tone(BUZZER_PIN, FREQUENCIES[note], length)
+                play_tone(BUZZER_PIN, FREQUENCIES[note], length * 0.5)
             time.sleep(0.1)
     finally:
         gpio_unexport(BUZZER_PIN)
