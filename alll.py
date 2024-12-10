@@ -121,7 +121,7 @@ def play_melody():
     try:
         for note, length in MELODY:
             if note in FREQUENCIES:
-                play_tone(BUZZER_PIN, FREQUENCIES[note], length * 0.3)
+                play_tone(BUZZER_PIN, FREQUENCIES[note], length * 0.5)
             time.sleep(0.1)
     finally:
         gpio_unexport(BUZZER_PIN)
